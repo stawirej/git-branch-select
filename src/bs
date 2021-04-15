@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -eou pipefail
+
+# List local branches.
+IFS=$'\n' read -r -d '' -a BRANCHES < <( git branch && printf '\0' )
+
+# Prompt the user to select one of the available branches.
+echo "Select branch:"
+select SELECTED_BRANCH in "${BRANCHES[@]}"; do
+  [[ -n $SELECTED_BRANCH ]] || { echo "Invalid branch! Try again." >&2; continue; }
+  break
+done
+
+# Remove selection mark (*).
+UNMARKED_BRANCH=${SELECTED_BRANCH//\*/}
+
+# Remove trailing spaces.
+BRANCH=$(echo "$UNMARKED_BRANCH" | xargs)
+
+# Checkout selected branch.
+git checkout "$BRANCH"
