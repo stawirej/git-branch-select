@@ -2,6 +2,9 @@
 
 set -eou pipefail
 
+# Make menu selections in one column
+COLUMNS=12
+
 # List local branches.
 IFS=$'\n' read -r -d '' -a BRANCHES < <( git branch && printf '\0' )
 
