@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+set -eou pipefail
+
+printf "\nConventional Commits"
+
+# Create a regex for a conventional commit.
+conventional_commit_regex="^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\([a-z \-]+\))?!?: .+$"
+
+# Get the commit message (the parameter we're given is just the path to the
+# temporary file which holds the message).
+commit_message=$(cat "$1")
+
+printf "\nValidating message:"
+printf "\n-----------------------------------------------------------------"
+printf "\n'$commit_message'"
+printf "\n-----------------------------------------------------------------"
+
+if [[ "$commit_message" =~ $conventional_commit_regex ]]; then
+   printf "\nOK - commit message meets Conventional Commit standards...\n\n"
+   exit 0
+fi
+
+printf "\nThe commit message does not meet the Conventional Commit standard"
+printf "\nNOTE: Put Jira ID in new line and separate by at least one empty line to have clean changelog information!\n"
+printf "\n    <type>[optional scope]: <description>"
+printf "\n"
+printf "\n\n    [optional body]"
+printf "\n\n    [optional footer(s)]"
+printf "\n\nAn example of a valid message is:"
+
+printf "\n-----------------------------------------------------------------"
+printf "\nfeat(login): add the 'remember me' button"
+printf "\n-----------------------------------------------------------------"
+printf "\nperf(read): Speed up reading data \n\nUse multithreading to speed up reading."
+printf "\n-----------------------------------------------------------------"
+printf "\n\nMore details at: https://www.conventionalcommits.org/en/v1.0.0/#summary"
+
+exit 1
