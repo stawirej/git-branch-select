@@ -1,7 +1,7 @@
 # BS
 
 Tool for rapid selecting and changing git branch.  
-List and switch branch in single command.
+List and switch branch in a single command.
 
 ![](./images/bshd.gif)
 
