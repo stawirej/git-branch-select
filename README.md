@@ -3,7 +3,7 @@
 Tool for rapid selecting and changing git branch.  
 List and switch branch in single command.
 
-![](./images/bs.gif)
+![](./images/bshd.gif)
 
 # Installation
 
