@@ -1,6 +1,9 @@
 # BS
 
-Tool for rapid selecting and changing git branch
+Tool for rapid selecting and changing git branch.  
+List and switch branch in single command.
+
+![](./images/bs.gif)
 
 # Installation
 
@@ -15,7 +18,8 @@ curl -s "https://raw.githubusercontent.com/stawirej/git-branch-select/master/ins
 ### Alternative
 
 1. Clone [git-branch-select](https://github.com/stawirej/git-branch-select) repository.
-2. Add `src/` to PATH
+2. Add execution rights for `src/` content.
+3. Add `src/` to PATH.
 
 ## Windows
 
