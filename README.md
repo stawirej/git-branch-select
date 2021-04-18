@@ -5,6 +5,14 @@ List and switch branch in a single command.
 
 ![](./images/bshd.gif)
 
+---
+**TIP**
+
+`master` branch will appear as first entry on the list,   
+so you can "mindlessly" enter `1` as index when you would like to switch to it.
+
+---
+
 # Installation
 
 ## Linux, MacOS X
