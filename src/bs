@@ -12,6 +12,42 @@ IFS=$'\n' read -r -d '' -a BRANCHES < <( git branch && printf '\0' )
 EXIT=EXIT
 BRANCHES+=("$EXIT")
 
+# Find master branch entry index
+MASTER="master"
+MASTER_SELECTED="* $MASTER"
+MASTER_INDEX=''
+MASTER_SELECTED_INDEX=''
+
+for i in "${!BRANCHES[@]}"; do
+
+   if [[ "${BRANCHES[$i]}" = "${MASTER}" ]]; then
+       MASTER_INDEX="${i}"
+       break
+   fi
+
+   if [[ "${BRANCHES[$i]}" = "${MASTER_SELECTED}" ]]; then
+          MASTER_SELECTED_INDEX="${i}"
+          break
+   fi
+done
+
+# Make master branch first element on the list
+PRIORITIZED_BRANCHES=()
+
+if [[ -n $MASTER_INDEX ]]; then
+
+    unset BRANCHES[$MASTER_INDEX]
+    PRIORITIZED_BRANCHES+=("$MASTER" "${BRANCHES[@]}")
+
+elif [[ -n $MASTER_SELECTED_INDEX ]]; then
+
+    unset BRANCHES[$MASTER_SELECTED_INDEX]
+    PRIORITIZED_BRANCHES+=("$MASTER_SELECTED" "${BRANCHES[@]}")
+
+fi
+
+BRANCHES=$PRIORITIZED_BRANCHES
+
 # Prompt the user to select one of the available branches.
 echo "Select branch:"
 select SELECTED_BRANCH in "${BRANCHES[@]}"; do
