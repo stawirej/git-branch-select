@@ -24,25 +24,29 @@ MAIN_SELECTED_INDEX=''
 
 for i in "${!BRANCHES[@]}"; do
 
-    if [[ "${BRANCHES[$i]}" = "${MASTER}" ]]; then
-        MASTER_INDEX="${i}"
-        break
-    fi
+    case "${BRANCHES[$i]}" in
 
-    if [[ "${BRANCHES[$i]}" = "${MASTER_SELECTED}" ]]; then
-        MASTER_SELECTED_INDEX="${i}"
-        break
-    fi
+        "${MASTER}")
+            MASTER_INDEX="${i}"
+            break
+            ;;
 
-    if [[ "${BRANCHES[$i]}" = "${MAIN}" ]]; then
-        MAIN_INDEX="${i}"
-        break
-    fi
+        "${MASTER_SELECTED}")
+            MASTER_SELECTED_INDEX="${i}"
+            break
+            ;;
 
-    if [[ "${BRANCHES[$i]}" = "${MAIN_SELECTED}" ]]; then
-        MAIN_SELECTED_INDEX="${i}"
-        break
-    fi
+        "${MAIN}")
+            MAIN_INDEX="${i}"
+            break
+            ;;
+
+        "${MAIN_SELECTED}")
+            MAIN_SELECTED_INDEX="${i}"
+            break
+            ;;
+    esac
+
 done
 
 # Make master/main branch first element on the list
