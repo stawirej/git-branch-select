@@ -12,37 +12,70 @@ IFS=$'\n' read -r -d '' -a BRANCHES < <( git branch && printf '\0' )
 EXIT=EXIT
 BRANCHES+=("$EXIT")
 
-# Find master branch entry index
+# Find master/main branch entry index
 MASTER="  master"
+MAIN="  main"
 MASTER_SELECTED="* master"
+MAIN_SELECTED="* main"
 MASTER_INDEX=''
+MAIN_INDEX=''
 MASTER_SELECTED_INDEX=''
+MAIN_SELECTED_INDEX=''
 
 for i in "${!BRANCHES[@]}"; do
 
-   if [[ "${BRANCHES[$i]}" = "${MASTER}" ]]; then
-       MASTER_INDEX="${i}"
-       break
-   fi
+    if [[ "${BRANCHES[$i]}" = "${MASTER}" ]]; then
+        MASTER_INDEX="${i}"
+        break
+    fi
 
-   if [[ "${BRANCHES[$i]}" = "${MASTER_SELECTED}" ]]; then
-          MASTER_SELECTED_INDEX="${i}"
-          break
-   fi
+    if [[ "${BRANCHES[$i]}" = "${MASTER_SELECTED}" ]]; then
+        MASTER_SELECTED_INDEX="${i}"
+        break
+    fi
+
+    if [[ "${BRANCHES[$i]}" = "${MAIN}" ]]; then
+        MAIN_INDEX="${i}"
+        break
+    fi
+
+    if [[ "${BRANCHES[$i]}" = "${MAIN_SELECTED}" ]]; then
+        MAIN_SELECTED_INDEX="${i}"
+        break
+    fi
 done
 
-# Make master branch first element on the list
+# Make master/main branch first element on the list
+# If master and main present select main as prioritized due to an alphabetic order
 PRIORITIZED_BRANCHES=()
 
-if [[ -n $MASTER_INDEX ]]; then
+if [[ -n $MAIN_INDEX || -n $MAIN_SELECTED_INDEX ]]; then
 
-    unset BRANCHES[$MASTER_INDEX]
-    PRIORITIZED_BRANCHES+=("$MASTER" "${BRANCHES[@]}")
+    if [[ -n $MAIN_INDEX ]]; then
 
-elif [[ -n $MASTER_SELECTED_INDEX ]]; then
+        unset BRANCHES[$MAIN_INDEX]
+        PRIORITIZED_BRANCHES+=("$MAIN" "${BRANCHES[@]}")
 
-    unset BRANCHES[$MASTER_SELECTED_INDEX]
-    PRIORITIZED_BRANCHES+=("$MASTER_SELECTED" "${BRANCHES[@]}")
+    elif [[ -n $MAIN_SELECTED_INDEX ]]; then
+
+        unset BRANCHES[$MAIN_SELECTED_INDEX]
+        PRIORITIZED_BRANCHES+=("$MAIN_SELECTED" "${BRANCHES[@]}")
+
+    fi
+
+else
+
+    if [[ -n $MASTER_INDEX ]]; then
+
+        unset BRANCHES[$MASTER_INDEX]
+        PRIORITIZED_BRANCHES+=("$MASTER" "${BRANCHES[@]}")
+
+    elif [[ -n $MASTER_SELECTED_INDEX ]]; then
+
+        unset BRANCHES[$MASTER_SELECTED_INDEX]
+        PRIORITIZED_BRANCHES+=("$MASTER_SELECTED" "${BRANCHES[@]}")
+
+    fi
 
 fi
 
@@ -55,7 +88,7 @@ select SELECTED_BRANCH in "${BRANCHES[@]}"; do
         exit
     fi
 
-    [[ -n $SELECTED_BRANCH ]] || { echo "Invalid branch! Try again." >&2; continue; }
+    [[ -n $SELECTED_BRANCH ]] || { echo "Invalid option!" >&2; continue; }
     break
 
 done
