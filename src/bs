@@ -13,8 +13,8 @@ EXIT=EXIT
 BRANCHES+=("$EXIT")
 
 # Find master branch entry index
-MASTER="master"
-MASTER_SELECTED="* $MASTER"
+MASTER="  master"
+MASTER_SELECTED="* master"
 MASTER_INDEX=''
 MASTER_SELECTED_INDEX=''
 
