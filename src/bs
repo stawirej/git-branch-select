@@ -79,10 +79,8 @@ else
 
 fi
 
-BRANCHES=$PRIORITIZED_BRANCHES
-
 # Prompt the user to select one of the available branches.
-select SELECTED_BRANCH in "${BRANCHES[@]}"; do
+select SELECTED_BRANCH in "${PRIORITIZED_BRANCHES[@]}"; do
 
     if [ "$SELECTED_BRANCH" = "$EXIT" ]; then
         exit
