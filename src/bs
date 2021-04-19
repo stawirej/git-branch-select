@@ -57,12 +57,12 @@ if [[ -n $MAIN_INDEX || -n $MAIN_SELECTED_INDEX ]]; then
 
     if [[ -n $MAIN_INDEX ]]; then
 
-        unset BRANCHES[$MAIN_INDEX]
+        unset BRANCHES["$MAIN_INDEX"]
         PRIORITIZED_BRANCHES+=("$MAIN" "${BRANCHES[@]}")
 
     elif [[ -n $MAIN_SELECTED_INDEX ]]; then
 
-        unset BRANCHES[$MAIN_SELECTED_INDEX]
+        unset BRANCHES["$MAIN_SELECTED_INDEX"]
         PRIORITIZED_BRANCHES+=("$MAIN_SELECTED" "${BRANCHES[@]}")
 
     fi
@@ -71,12 +71,12 @@ else
 
     if [[ -n $MASTER_INDEX ]]; then
 
-        unset BRANCHES[$MASTER_INDEX]
+        unset BRANCHES["$MASTER_INDEX"]
         PRIORITIZED_BRANCHES+=("$MASTER" "${BRANCHES[@]}")
 
     elif [[ -n $MASTER_SELECTED_INDEX ]]; then
 
-        unset BRANCHES[$MASTER_SELECTED_INDEX]
+        unset BRANCHES["$MASTER_SELECTED_INDEX"]
         PRIORITIZED_BRANCHES+=("$MASTER_SELECTED" "${BRANCHES[@]}")
 
     fi
