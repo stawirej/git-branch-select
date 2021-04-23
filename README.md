@@ -8,8 +8,8 @@ List and switch branch in a single command.
 ---
 **TIP**
 
-`master` branch will appear as first entry on the list,   
-so you can "mindlessly" enter `1` as index when you would like to switch to it.
+`master`/`main` branch will appear as first entry on the list.   
+To even faster switch to `master`/`main` you can "mindlessly" enter `1`.
 
 ---
 
