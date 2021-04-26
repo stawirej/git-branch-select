@@ -5,11 +5,16 @@ List and switch branch in a single command.
 
 ![](./images/bshd.gif)
 
+# Usage
+ 
+1. Run `bs` command.
+2. Select desired branch number and hit `Enter`.
+
 ---
 **TIP**
 
 `master`/`main` branch will appear as first entry on the list.   
-To even faster switch to `master`/`main` you can "mindlessly" enter `1`.
+To even faster switch to `master`/`main` you can "mindlessly" enter `1` + `Enter`.
 
 ---
 
