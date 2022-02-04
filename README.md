@@ -6,9 +6,22 @@ List and switch branch in a single command.
 ![](./images/bshd.gif)
 
 # Usage
- 
+
+## Select mode
+
 1. Run `bs` command.
 2. Select desired branch number and hit `Enter`.
+
+## Predefined branch index mode
+
+1. Run `bs` command with branch index starting from `1` and hit `Enter`.
+
+### Example
+
+- Switch to first branch (master/main):
+    ```bash
+    bs 1
+    ```
 
 ---
 **TIP**
