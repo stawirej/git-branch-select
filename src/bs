@@ -83,17 +83,27 @@ else
 
 fi
 
-# Prompt the user to select one of the available branches.
-select SELECTED_BRANCH in "${PRIORITIZED_BRANCHES[@]}"; do
+# Assign branch index provided by user or set default `NONE` value
+USER_BRANCH_INDEX=${1-NONE}
 
-    if [ "$SELECTED_BRANCH" = "$EXIT" ]; then
-        exit
-    fi
+# Check if user specified branch number in command line
+if [[ "$USER_BRANCH_INDEX" != "NONE" ]]; then
 
-    [[ -n $SELECTED_BRANCH ]] || { echo "Invalid option!" >&2; continue; }
-    break
+    SELECTED_BRANCH=${PRIORITIZED_BRANCHES[$USER_BRANCH_INDEX - 1]}
 
-done
+else
+    # Prompt the user to select one of the available branches.
+    select SELECTED_BRANCH in "${PRIORITIZED_BRANCHES[@]}"; do
+
+        if [ "$SELECTED_BRANCH" = "$EXIT" ]; then
+            exit
+        fi
+
+        [[ -n $SELECTED_BRANCH ]] || { echo "Invalid option!" >&2; continue; }
+        break
+
+    done
+fi
 
 # Remove selection mark (*).
 UNMARKED_BRANCH=${SELECTED_BRANCH//\*/}
