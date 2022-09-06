@@ -38,7 +38,7 @@ To even faster switch to `master`/`main` you can "mindlessly" enter `1` + `Enter
 Execute in terminal
 
 ```bash
-curl -s "https://raw.githubusercontent.com/stawirej/git-branch-select/master/install/install.sh" | bash
+curl -s "https://raw.githubusercontent.com/stawirej/git-branch-select/master/install/install.sh" | sudo bash
 ```
 
 ### Alternative
